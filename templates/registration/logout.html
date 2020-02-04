@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %} Logout {% endblock head_title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+            <div class="col">
+                <div class="card">
+
+
+<form method="post" class="form-group">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit">Logout!</button>
+</form>
+
+                                    </div></div></div></div>
+
+{% endblock %}

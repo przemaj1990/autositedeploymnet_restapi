@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+    <form action="" method="POST">
+    {% csrf_token %}
+            <div class="col-sm-12">
+    <div class="card ">
+            <div class="card">
+
+       <h1 class="card-header">Do you want to delete this subject:  {{ object }}</h1>
+                <div class="card-body">
+                    <p class="card-text">Press Delete to erase all information about this site, please be aware that this finally decision and
+                    there will be no option to restore this data.</p>
+        <p><button type="submit" vlaue="Yes">Delete!</button>
+            <a href="/">Cancel</a></p>
+                </div>
+
+            </div>
+            </div>
+    </form>
+{% endblock %}

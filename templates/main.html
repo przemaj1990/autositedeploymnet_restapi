@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %} {{ object.site_code }} | {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+{% if object.image %}
+    <img src='{{ object.image.url }}' class='img-responsive' />
+    {% endif %}
+<div class="container">
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+        <img class="card-img" src="https://www.ibm.com/blogs/watson-health/wp-content/uploads/2019/04/Banner1-1.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">Create New Site</h5>
+        <p class="card-text">Here you will be able to request new site</p>
+        <a href="{% url 'lbeportal:create' %}" class="btn btn-primary">Create</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+        <img class="card-img" src="https://hitinfrastructure.com/images/site/article_headers/_normal/Wireless_networks.jpg" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">List of sites</h5>
+        <p class="card-text">Here you have list of all already created sites</p>
+        <a href="{% url 'lbeportal:list' %}" class="btn btn-primary">List</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+    {% if object.file %}
+<!--        <img src="{{ object.file.url }}" class="img-responsive"></div>-->
+    {% endif %}
+
+{% endblock %}
