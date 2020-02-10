@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_framework_jwt.views import obtain_jwt_token
 
 from engineers.views import (login_view, register_view, logout_view)
 
@@ -25,10 +26,17 @@ urlpatterns = [
     path('lbe_portal/', include(('lbeportal.urls', 'lbeportal'), namespace='lbeportal')),
     # api for lbeportal:
     path('api/lbe_portal/', include(('lbeportal.api.urls', 'lbeportal'), namespace='lbeportal-api')),
+    # api for accounts:
+    path('api/accounts/', include(('accounts.api.urls', 'accounts'), namespace='accounts')),
     # path('', include('django.contrib.auth.urls')),
     # api for engineers:
     path('api/engineers/', include(('engineers.api.urls', 'engineers'), namespace='engineers-api')),
     path('register/', register_view, name='register'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+    path('api-token-auth/', obtain_jwt_token),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+
+

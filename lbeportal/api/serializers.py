@@ -5,6 +5,7 @@ from rest_framework.serializers import (
 )
 
 from lbeportal.models import SiteVendor
+from accounts.api.serializers import UserDetailSerializer
 
 class SiteVendorSerializer(ModelSerializer):
     class Meta:
@@ -13,7 +14,8 @@ class SiteVendorSerializer(ModelSerializer):
 
 
 class SiteVendorDetailSerializer(ModelSerializer):
-    user = SerializerMethodField()
+    # user = SerializerMethodField()
+    user = UserDetailSerializer(read_only=True)
     delete_url = HyperlinkedIdentityField(
         view_name='lbeportal-api:delete',
         lookup_field='pk'
@@ -22,8 +24,8 @@ class SiteVendorDetailSerializer(ModelSerializer):
         view_name='lbeportal-api:update',
         lookup_field='pk'
     )
-    def get_user(self, obj):
-        return str(obj.user.username)
+    # def get_user(self, obj):
+    #     return str(obj.user.username)
 
     class Meta:
         model = SiteVendor
@@ -58,7 +60,8 @@ class SiteVendorDetailSerializer(ModelSerializer):
         #     return image
 
 class SiteVendorListSerializer(ModelSerializer):
-    user = SerializerMethodField()
+    user = UserDetailSerializer(read_only=True)
+    # user = SerializerMethodField()
     url = HyperlinkedIdentityField(
         view_name='lbeportal-api:detail',
         lookup_field='pk'
@@ -87,3 +90,4 @@ class SiteVendorListSerializer(ModelSerializer):
             'site_classification',
             'user'
         ]
+
